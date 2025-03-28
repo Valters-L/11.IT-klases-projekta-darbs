@@ -1,0 +1,195 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(0, 0, 30);
+    text-align: center;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: rgb(0, 0, 50);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+body, h1, h2, h3, p, label, button, a {
+    color: rgb(255, 255, 255);
+}
+
+/* Button styling */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Graph container */
+.graph-container {
+    margin: 20px auto;
+    width: 80%;
+    height: 400px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Input field */
+input[type="number"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px;
+}
+
+/* Pop-up medal */
+.medal-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.medal-popup.show {
+    display: block;
+}
+
+/* Quiz page styles */
+.quiz-container {
+    margin-top: 20px;
+}
+
+.quiz-input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.quiz-result {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}
+
+/* Info page styling */
+.info-links a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: #007BFF;
+    transition: color 0.3s;
+}
+
+.info-links a:hover {
+    color: #0056b3;
+}
+
+/* Style for navigation buttons */
+.page-buttons {
+    margin-top: 20px;
+}
+
+.page-buttons a button {
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    transition: background 0.3s;
+}
+
+.page-buttons a button:hover {
+    background-color: #0056b3;
+
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.image {
+     width: 40%;
+}
+
+p {
+    color: white; /* Sets the text color of all paragraphs to white */
+}
+
+.chart-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Removed overlay effect */
+.overlay {
+    display: none; /* Not needed anymore */
+}
+
+.hidden {
+    display: none;
+}
+
+#result-message {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.top-left-image {
+    position: absolute;
+    top: 150px;
+    left: 210px;
+    width: 300px; /* Adjust as needed */
+    height: auto;
+}
+
+.top-left-image img {
+    width: 100%; /* Ensures the image scales within the div */
+    height: auto;
+}
+.top-right-image {
+    position: absolute;
+    top: 150px;
+    Right: 210px;
+    width: 300px; /* Adjust as needed */
+    height: auto;
+}
+
+.top-right-image img {
+    width: 100%; /* Ensures the image scales within the div */
+    height: auto;
+}

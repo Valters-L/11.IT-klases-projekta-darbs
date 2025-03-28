@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Sleep Data App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Sleep Data App!</h1>
+        <p>Explore sleep patterns, phone usage effects, and helpful resources to improve your sleep habits.</p>
+        
+        <!-- Images Section -->
+        <div class="image-container">
+            <img size=50% src="{{ url_for('static', filename='images/sleep.png') }}" alt="Person sleeping" class="image">
+            <img size=50% src="{{ url_for('static', filename='images/phone_usage.png') }}" alt="Phone usage at night" class="image">
+        </div>
+        
+        <h2>Select a page to navigate:</h2>
+        
+        <!-- Buttons for navigation -->
+        <div class="button-container">
+            <a href="/page1" class="button">Sleep amongst middle schoolers</a>
+            <a href="/page2" class="button">Phone usage and your sleep</a>
+            <a href="/page3" class="button">Information and help</a>
+        </div>
+    </div>
+</body>
+</html>

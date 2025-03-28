@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Usage and Sleep</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Styling for the overlay circle */
+        .overlay-circle {
+            position: absolute;
+            top: 12.5%; /* Adjust based on where you want the circle */
+            left: 51%;
+            transform: translateX(-50%);
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background-color: rgb(0, 0, 100);
+            opacity: 1;
+            display: flex; /* Enable flexbox */
+            flex-direction: column; /* Stack items vertically */
+            justify-content: center; /* Center text vertically */
+            align-items: center; /* Center text horizontally */
+            color: green;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center; /* Ensure text is centered */
+}
+
+
+        
+        /* Make the overlay circle hidden by default */
+        .hidden {
+            display: none;
+        }
+
+        /* Styling for result messages */
+        .correct {
+            color: green;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .incorrect {
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phone Usage and Its Effect on Sleep</h1>
+        <p style="color:white">Analyze the impact of phone usage before sleep.</p>
+
+        <!-- Graph Containers -->
+        <div class="chart-container" style="position: relative;">
+            <!-- Overlay circle over pie chart -->
+            <div id="overlay" class="overlay-circle hidden">
+                How many percent answered "Yes"?<br>
+                <input type="number" id="user-guess" placeholder="Your guess %" />
+                <button style=color:black onclick="checkAnswer()">Submit</button>
+                <p id="result-message"></p>
+            </div>
+            <img src="data:image/png;base64,{{ pie_chart_url }}" alt="Pie Chart">
+        </div>
+        
+        <div class="chart-container">
+            <img src="data:image/png;base64,{{ correlation_graph_url }}" alt="Correlation Graph">
+        </div>
+        
+        <!-- Return to home page button -->
+        <br>
+        <a href="/" class="button">Back to Home</a>
+    </div>
+    <script>
+        const correctAnswer = {{ correct_answer }}; // Use the correct percentage for "Yes" answer
+        
+        // Show the overlay when the page loads
+        document.getElementById('overlay').classList.remove('hidden');
+        
+        function checkAnswer() {
+            const userGuess = parseFloat(document.getElementById('user-guess').value);
+            const resultMessage = document.getElementById('result-message');
+            
+            if (isNaN(userGuess)) {
+                resultMessage.textContent = "Please enter a number!";
+                return;
+            }
+            
+            // Check if the answer is correct (with some tolerance for floating point)
+            if (Math.abs(userGuess - correctAnswer) < 5) {
+                resultMessage.textContent = "You guessed it!";
+                resultMessage.classList.remove('incorrect');
+                resultMessage.classList.add('correct');
+            } else {
+                resultMessage.textContent = "Nice try!";
+                resultMessage.classList.remove('correct');
+                resultMessage.classList.add('incorrect');
+            }
+            
+            // Hide the overlay after 2 seconds
+            setTimeout(() => {
+                document.getElementById('overlay').classList.add('hidden');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

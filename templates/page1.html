@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        function updateGraph() {
+            let selectedGrades = [];
+            document.querySelectorAll('input[name="grades"]:checked').forEach(checkbox => {
+                selectedGrades.push(checkbox.value);
+            });
+
+            let userSleep = parseFloat(document.getElementById('userSleep').value) || null;
+
+            fetch('/update-graph', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ grades: selectedGrades, user_sleep: userSleep })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('graph').src = 'data:image/png;base64,' + data.plot_url;
+            })
+            .catch(error => console.error('Error updating graph:', error));
+        }
+    </script>
+</head>
+<body>
+    <div class="top-left-image">
+        <img src="{{ url_for('static', filename='images/yawning.jpeg') }}" alt="Yawning">
+    </div>
+    <div class="top-right-image">
+        <img src="{{ url_for('static', filename='images/yawning2.jpeg') }}" alt="Yawning">
+    </div>
+    <div class="container">
+    <h1>Average Sleep per Grade</h1>
+
+    <form id="gradeForm">
+        {% for grade in grades %}
+            <label>
+                <input type="checkbox" name="grades" value="{{ grade }}" onchange="updateGraph()">
+                Grade: {{ grade }}
+            </label><br>
+        {% endfor %}
+    </form>
+
+    <br>
+
+    <label for="userSleep">Enter Your Hours of Sleep:</label>
+    <input type="number" id="userSleep" placeholder="Your Sleep Hours" onchange="updateGraph()">
+
+    <br><br>
+
+    <img id="graph" src="data:image/png;base64,{{ plot_url }}" alt="Graph">
+            <!-- Return to home page button -->
+            <br>
+            <a href="/" class="button">Back to Home</a>
+    </div>
+</body>
+</html>
